@@ -18,5 +18,45 @@ Un string_builder est donc soit un mot (feuille), soit une concaténation de deu
 
 #### Définir le type string_builder 
 
-Un string builder est soit un mot (Feuille), soit une concaténation de deux autres string builder (N). Par ailleurs, on conserve dans les feuilles, aussi bien que dans les noeuds, la longueur length(c) de la chaîne de caractères c correspondante.
+Un _string_builder_ est soit un mot (Feuille), soit une concaténation de deux autres _string_builder_ (N). Par ailleurs, on conserve dans les feuilles, aussi bien que dans les noeuds, la longueur length(c) de la chaîne de caractères c correspondante. 
+
+Ainsi, on écrit :
+
+```ocaml
+ type string
+ builder =
+ | Feuille of string ∗ int
+ | N of string_builder ∗ int ∗ string_builder ;;
+```
+
+Pour avoir les bons indices et pour simplifier l’écriture du code de concat j’ai établi la fonction taille qui prend en argument un _string_builder_ et renvoie la longueure de la chaine de caractère du _string_builder_.
+
+```ocaml
+ let rec taille strb = match strb with
+ | Feuille ( str ,n) −> n
+ |  N( strb1 ,n, strb2 ) −> n;;
+```
+
+### Question 2 :
+
+#### Définir une fonction char_at qui prend en argument un entier i et un string_builder représentant le mot [c0;...;cn−1], et qui renvoie le caractère ci. *Note* : On supposera 0 ≤ i < n, et on utilisera la fonction String.get pour obtenir le ie caractère d’une chaîne de caractères.
+
+Pour obtenir le ième caractère du _string_builder_ j’ai utilisé une sous-fonction aux qui prend en argument un _string_builder_ et renvoie la chaine de caractères str correspondante.
+
+Ensuite, on renvoie String.get i str.
+
+```ocaml
+ let rec aux strb = match strb with
+ | Feuille ( str ,n) −> str
+ | N( strb1 ,n, strb2 ) −> (aux strb1)ˆ(aux strb2)
+ ;;
+```
+
+J’ai réalisé le test sur l’arbre suivant :
+
+![Texte alternatif](images/test.JPG)
+
+```ocaml
+let () = assert( char at 10 (N(Feuille("nicolas" ,7), 13, Feuille ("desan" ,5))) = 's'));;
+```
 
