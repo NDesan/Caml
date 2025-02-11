@@ -95,7 +95,7 @@ Le test de la fonction cost à été réalisé sur l’arbre suivant :
 ![Texte alternatif](images/cost.JPG)
 
 ```ocaml
- let () = assert( cost (N(Feuille(”nicolas” ,7) , 16, N( Feuille (”pile” ,4) , 9, Feuille (”desan” ,5)))) = 25);;
+ let () = assert( cost (N(Feuille("nicolas" ,7) , 16, N( Feuille ("pile" ,4) , 9, Feuille ("desan" ,5)))) = 25);;
 ```
 ### Question 5 :
 
