@@ -39,7 +39,7 @@ Pour avoir les bons indices et pour simplifier l’écriture du code de concat j
 
 ### Question 2 :
 
-#### Définir une fonction char_at qui prend en argument un entier i et un string_builder représentant le mot [c0;...;cn−1], et qui renvoie le caractère ci. *Note* : On supposera 0 ≤ i < n, et on utilisera la fonction String.get pour obtenir le ie caractère d’une chaîne de caractères.
+#### Définir une fonction char_at qui prend en argument un entier i et un string_builder représentant le mot [c0;...;cn−1], et qui renvoie le caractère ci. **Note** : On supposera 0 ≤ i < n, et on utilisera la fonction String.get pour obtenir le ie caractère d’une chaîne de caractères.
 
 Pour obtenir le ième caractère du _string_builder_ j’ai utilisé une sous-fonction aux qui prend en argument un _string_builder_ et renvoie la chaine de caractères str correspondante.
 
@@ -60,3 +60,15 @@ J’ai réalisé le test sur l’arbre suivant :
 let () = assert( char at 10 (N(Feuille("nicolas" ,7), 13, Feuille ("desan" ,5))) = 's'));;
 ```
 
+### Question 3 :
+
+#### Définir une fonction sub_string qui prend en arguments un entier i, un entier m et un string_builder sb représentant le mot [c0;...;cn−1] et qui renvoie un string_builder représentant le mot [ci;...;ci+m−1], c’est-à-dire la sous-chaîne de c débutant au caractère i et de longueur m. **Note** : On supposera 0 ≤ i < i + m ≤ n, et on s’attachera à réutiliser dans le string_builder résultant autant de sous-arbres de sb que possible.
+
+ J’ai réalisé la fonction sub string grâce aux fonctions auxiliaires :
+
+- **sub string debut** qui prend en argument une chaine de caractère str, un entier i et renvoie les ième premiers caractères de str.
+- **sub string fin** qui prend en argument une chaine de caractère str, un entier i et renvoie les caractères de str à partir du rang i.
+- **debut** qui prend en argument un string builder strb, un entier i et renvoie le _string_builder_ avec les ième premiers caractères de strb.
+- **fin** qui prend en argument un string builder strb, un entier i et renvoie le _string_builder_ avec les caractères de strb à partir du rang i.
+
+Le test a été réalisé avec le même arbre que pour la question 2.
