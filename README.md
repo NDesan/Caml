@@ -72,3 +72,48 @@ let () = assert( char at 10 (N(Feuille("nicolas" ,7), 13, Feuille ("desan" ,5)))
 - **fin** qui prend en argument un string builder strb, un entier i et renvoie le _string_builder_ avec les caractères de strb à partir du rang i.
 
 Le test a été réalisé avec le même arbre que pour la question 2.
+
+## Equilibrage
+
+Le hasard des concaténations peut amener un string_builder à se retrouver déséquilibré, c’est-à-dire à avoir certaines de ses feuilles très éloignées de la racine et donc d’accès plus coûteux. Le but de cette partie est d’étudier une stratégie de rééquilibrage à posteriori. Considérons un string_builder sb composé de k +1 feuilles, et donc de k noeuds internes. Notons ces k + 1 feuilles m0,...,mk. Lorsqu’on les considère de la gauche vers la droite, si bien que sb représente le mot m0m1...mk. La profondeur de la feuille mi dans sb est notée depth(mi) et est définie comme la distance de mi à la racine de sb. Voici un exemple (Fig. 2) de string_builder pour k=3, où la profondeur de chaque feuille est indiquée entre parenthèses.
+
+![Texte alternatif](images/string_builder_exemple_2.JPG)
+
+Le coût de l’accès à un caractère de la feuille mi est défini comme la profondeur de cette feuille dans sb, soit depth(mi) (on ne considère pas le coût de l’accès dans le mot mi lui-même). Le coût total d’un string_builder est alors défini comme la somme des coûts d’accès à tous ses caractères et vaut donc :
+
+
+$$
+C(sb) = \sum_{i=0}^{k} length(m_i) * depth(m_i)
+$$
+
+### Question 4 :
+
+#### Définir la fonction cost qui prend en argument un string_builder et qui renvoie son coût selon la définition précédente.
+
+Le test de la fonction cost à été réalisé sur l’arbre suivant :
+
+![Texte alternatif](images/cost.JPG)
+
+```ocaml
+ let () = assert( cost (N(Feuille(”nicolas” ,7) , 16, N( Feuille (”pile” ,4) , 9, Feuille (”desan” ,5)))) = 25);;
+```
+### Question 5 :
+
+#### Définir une fonction random_string qui prend en argument un entier i et qui génère un arbre de profondeur i. Vous présenterez l’algorithme utilisé pour la génération dans votre rapport, et vous discuterez de la pertinence de vos choix. Note : Pensez à consulter la documentation en ligne des modules Random, Char et String.
+
+Afin de réaliser random string, j’ai fait la fonction auxiliaire random word qui prend en argument n et qui renvoie une chaine de caractères aléatoire de longueure n. Pour cela, on utilise 97 + (Random.int 26) qui génère un entier aléatoire correspondant aux lettres de l’alphabet en ASCII.
+
+Ensuite, dans la fonction random string j’ai utilisé (Random.int 3) dans la récurrence pour distinguer trois cas de figures :
+
+- Cas 1 :
+
+![Texte alternatif](images/cas1.JPG)
+
+- Cas 2 :
+
+![Texte alternatif](images/cas2.JPG)
+
+- Cas 3 :
+
+![Texte alternatif](images/cas3.JPG)
+
