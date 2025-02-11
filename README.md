@@ -117,3 +117,41 @@ Ensuite, dans la fonction random string j’ai utilisé (Random.int 3) dans la r
 
 ![Texte alternatif](images/cas3.JPG)
 
+
+### Question 6 :
+
+#### Définir une fonction list_of_string qui prend en argument un string_builder et qui renvoie la liste des chaînes de caractères dans le même ordre que dans l’arbre (parcours infixe).
+
+On propose l’algorithme d’équilibrage suivant :
+
+- Transformer l’arbre en une liste de ses feuilles respectant l’ordre.
+- Tant qu’il existe au moins 2 éléments dans la liste :
+
+ 1. trouver les deux éléments successifs dont la concaténation a le coût le plus faible,
+ 2. les retirer, les concaténer et insérer le résultat à leur position.
+
+- Concaténer les deux derniers éléments.
+
+ Le test de cette question a été réalisé avec le même arbre que la question 4 :
+
+
+```ocaml
+  let () = assert( list of string
+                 (N( Feuille ("nicolas" ,7) , 16,
+                   N( Feuille ("pile" ,4) , 9, Feuille ("desan" ,5))))
+                       = [( Feuille ("nicolas" ,7));
+                          ( Feuille ("pile" ,4));
+                          ( Feuille ("desan" ,5))]);;
+```
+
+### Question 7 :
+
+####  Définir une fonction balance qui prend en argument un string_builder et qui renvoie un nouveau string_builder équilibré selon l’algorithme précédent.
+
+Pour cette question, j’ai réalisé trois sous-fonction :
+ 
+ - **min cost** qui prend en argument un entier tmp et une liste l de Feuilles et qui renvoie le plus faible coût de deux Feuilles consécutives.
+
+- **retireconcat** insere qui prend en argument une liste de Feuilles et un entier n et qui concatène les deux feuilles qui ont un coût égal à n au sein même de la liste.
+
+- **algo final** qui prend en argument une liste l de Feuilles et qui renvoie un nouveau string builder équilibré selon l’algorithme présenté dans le sujet.
